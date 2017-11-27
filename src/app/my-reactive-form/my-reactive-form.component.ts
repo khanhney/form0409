@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-my-reactive-form',
@@ -9,11 +9,17 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class MyReactiveFormComponent implements OnInit {
   formSignIn: FormGroup;
 
+  constructor(private fb: FormBuilder) {}
+
   ngOnInit() {
-    this.formSignIn = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
+    this.formSignIn = this.fb.group({
+      email: this.fb.control('abcd', Validators.required),
+      password: ''
     });
+  }
+
+  get txtEmail() {
+    return this.formSignIn.controls.email;
   }
 
   onSubmit() {
