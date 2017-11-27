@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-my-form',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-form.component.css']
 })
 export class MyFormComponent {
-  onSubmit(x) {
-    console.log(x);
+  onSubmit(x: NgForm) {
+    console.log(x.value);
   }
 }

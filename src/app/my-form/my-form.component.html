@@ -1,8 +1,17 @@
-<form (submit)="onSubmit(signInForm)" #signInForm="ngForm">
-  <input type="text" placeholder="Email" ngModel name="email">
+<form (ngSubmit)="onSubmit(signInForm)" #signInForm="ngForm">
+  <input
+    type="text"
+    placeholder="Email"
+    ngModel
+    name="email"
+    #txtEmail="ngModel"
+    required
+  />
+  <p *ngIf="txtEmail.touched && txtEmail.errors?.required">Ban phai nhap email</p>
   <br><br>
   <input type="password" placeholder="Password" ngModel name="password">
   <br><br>
-  <button>Sign In</button>
+  <button >Sign In</button>
   <code>{{ signInForm.value | json }}</code>
+  <code>{{ signInForm.valid | json }}</code>
 </form>
